@@ -1,3 +1,5 @@
+// app.js
+
 import express from 'express';
 import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
@@ -33,6 +35,8 @@ app.use('/api/assignments', AssignmentRoute);
 
 // Start the server
 const PORT = process.env.PORT || 3007;
-app.listen(PORT, () => {
+const server = app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
+
+export default server; // Export the server instance for testing

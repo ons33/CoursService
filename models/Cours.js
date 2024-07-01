@@ -1,4 +1,4 @@
-// src/models/Cours.js
+
 import mongoose from 'mongoose';
 
 const CoursSchema = new mongoose.Schema({
@@ -13,7 +13,7 @@ const CoursSchema = new mongoose.Schema({
       email: { type: String, required: true },
       confirmer: { type: Boolean, default: false }
     }
-  ] // List of participants with email and confirmation status
+  ] 
 });
 
 const Cours = mongoose.model('Cours', CoursSchema);

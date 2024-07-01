@@ -5,7 +5,13 @@ import Section from '../models/Section.js';
 export const createAssignment = async (req, res) => {
   try {
     const { title, description, dueDate, sectionId, userId } = req.body;
-    const assignment = new Assignment({ title, description, dueDate, section: sectionId, userId });
+    const assignment = new Assignment({
+      title,
+      description,
+      dueDate,
+      section: sectionId,
+      userId,
+    });
     await assignment.save();
 
     const section = await Section.findById(sectionId);
@@ -17,12 +23,10 @@ export const createAssignment = async (req, res) => {
     res.status(500).json({ message: 'Error creating assignment', error });
   }
 };
-
-
-
+// get Submissions By SectionId
 export const submitAssignment = async (req, res) => {
   try {
-    const { assignmentId } = req.params; // This is the sectionId
+    const { assignmentId } = req.params;
     const { userId } = req.body;
     const file = req.file;
 

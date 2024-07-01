@@ -8,7 +8,7 @@ import {
   deleteSection,
   addDocumentToSection,
   submitAssignment,
-  getSubmissionsBySectionId, // Import the new controller function
+  getSubmissionsBySectionId, 
   createSectionWithDocument,
 } from '../controllers/sectionController.js';
 import upload from '../config/cloudinary.js';
@@ -20,8 +20,16 @@ router.get('/', getSections);
 router.get('/:sectionId', getSectionById);
 router.put('/:sectionId', updateSection);
 router.delete('/:sectionId', deleteSection);
-router.post('/create-with-document', upload.single('file'), createSectionWithDocument);
-router.post('/assignments/:assignmentId/submit', upload.single('file'), submitAssignment);
-router.get('/:sectionId/submissions', getSubmissionsBySectionId); // New route for fetching submissions
+router.post(
+  '/create-with-document',
+  upload.single('file'),
+  createSectionWithDocument
+);
+router.post(
+  '/assignments/:assignmentId/submit',
+  upload.single('file'),
+  submitAssignment
+);
+router.get('/:sectionId/submissions', getSubmissionsBySectionId); 
 
 export default router;

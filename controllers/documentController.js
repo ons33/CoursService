@@ -1,10 +1,8 @@
 import Document from '../models/Document.js';
 import Depot from '../models/Depot.js';
 
-export const createDocument = async (req, res) => {
-
-};
-
+export const createDocument = async (req, res) => {};
+// get Documents
 export const getDocuments = async (req, res) => {
   try {
     const documents = await Document.find().populate('depots');
@@ -13,26 +11,32 @@ export const getDocuments = async (req, res) => {
     res.status(500).json({ message: 'Error fetching documents', error });
   }
 };
-
+//
 export const getDocumentById = async (req, res) => {
   try {
-    const document = await Document.findById(req.params.documentId).populate('depots');
+    const document = await Document.findById(req.params.documentId).populate(
+      'depots'
+    );
     res.status(200).json(document);
   } catch (error) {
     res.status(500).json({ message: 'Error fetching document', error });
   }
 };
-
+// get Document By Id
 export const updateDocument = async (req, res) => {
   try {
     const { title } = req.body;
-    const document = await Document.findByIdAndUpdate(req.params.documentId, { title }, { new: true });
+    const document = await Document.findByIdAndUpdate(
+      req.params.documentId,
+      { title },
+      { new: true }
+    );
     res.status(200).json(document);
   } catch (error) {
     res.status(500).json({ message: 'Error updating document', error });
   }
 };
-
+// delete Document
 export const deleteDocument = async (req, res) => {
   try {
     const document = await Document.findByIdAndDelete(req.params.documentId);
@@ -41,7 +45,7 @@ export const deleteDocument = async (req, res) => {
     res.status(500).json({ message: 'Error deleting document', error });
   }
 };
-
+// add Depot To Document
 export const addDepotToDocument = async (req, res) => {
   try {
     const { documentId } = req.params;
@@ -58,7 +62,7 @@ export const addDepotToDocument = async (req, res) => {
     res.status(500).json({ message: 'Error adding depot', error });
   }
 };
-
+// download Document
 export const downloadDocument = async (req, res) => {
   try {
     const document = await Document.findById(req.params.documentId);
@@ -67,6 +71,8 @@ export const downloadDocument = async (req, res) => {
     }
     res.redirect(document.fileUrl); // Redirect to the Cloudinary file URL
   } catch (error) {
-    res.status(500).json({ error: 'An error occurred while downloading the document' });
+    res
+      .status(500)
+      .json({ error: 'An error occurred while downloading the document' });
   }
 };

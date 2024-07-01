@@ -1,5 +1,13 @@
 import express from 'express';
-import { createDocument, getDocuments, getDocumentById, updateDocument, deleteDocument, addDepotToDocument, downloadDocument } from '../controllers/documentController.js';
+import {
+  createDocument,
+  getDocuments,
+  getDocumentById,
+  updateDocument,
+  deleteDocument,
+  addDepotToDocument,
+  downloadDocument,
+} from '../controllers/documentController.js';
 
 const router = express.Router();
 
